@@ -1,6 +1,6 @@
 import { Card } from '@/components/card'
 import { Nav } from '@/components/nav'
-import { concepts } from '@/lib/mock-data'
+import { concepts } from '@/lib/data'
 import { notFound } from 'next/navigation'
 
 export default async function ConceptDetailPage({ params }: {params: Promise<{ id: string }> }) {

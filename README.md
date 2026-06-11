@@ -1,4 +1,4 @@
-# T for Conspiracy — Agent Factory
+# T for Conspiracy - Agent Factory
 
 AI-powered multi-agent workflow that turns conspiracy theories into satirical merchandise concepts.
 
