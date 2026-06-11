@@ -5,7 +5,7 @@ export type Concept = {
   description: string;
   prompt: string;
   score: number;
-  status: 'draft' | 'review' | 'approved';
+  status: 'draft' | 'review' | 'approved' | 'rejected' | 'needs-work';
 };
 
 export type Topic = {

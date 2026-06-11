@@ -2,6 +2,7 @@ import { Card } from '@/components/card'
 import { Nav } from '@/components/nav'
 import { concepts } from '@/lib/data'
 import { notFound } from 'next/navigation'
+import { ApprovalActions } from '@/components/approval-actions'
 
 export default async function ConceptDetailPage({ params }: {params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -51,10 +52,8 @@ export default async function ConceptDetailPage({ params }: {params: Promise<{ i
                 <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm">
                   Score: {concept.score}
                 </span>
-                <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm">
-                  Status: {concept.status}
-                </span>
               </div>
+              <ApprovalActions initialStatus={concept.status} />
             </div>
           </Card>
         </div>
