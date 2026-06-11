@@ -12,7 +12,17 @@ export function ApprovalActions({ initialStatus }: { initialStatus: ApprovalStat
       <p className="mb-3 text-sm text-zinc-500">Human approval</p>
 
       <div className="mb-4">
-        <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm">
+        <span
+          className={`rounded-full px-3 py-1 text-sm ${
+            status === 'approved'
+            ? 'bg-emerald-900/40 text-emerald-300 border border-emerald-800'
+            : status === 'needs-work'
+            ? 'bg-amber-900/40 text-amber-300 border border-amber-800'
+            : status === 'rejected'
+            ? 'bg-red-950 text-red-300 border border-red-900'
+            : 'bg-zinc-900 text-zinc-300 border border-zinc-800'
+          }`}
+        >
           Status: {status}
         </span>
       </div>
@@ -20,21 +30,33 @@ export function ApprovalActions({ initialStatus }: { initialStatus: ApprovalStat
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => setStatus('approved')}
-          className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black"
+          className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+            status === 'approved'
+              ? 'bg-zinc-200 text-black'
+              : 'border border-zinc-700 text-zinc-300 hover:bg-zinc-800'
+          }`}
         >
           Approve
         </button>
 
         <button
           onClick={() => setStatus('needs-work')}
-          className="rounded-full border border-zinc-700 px-4 py-2 text-sm text-zinc-200"
+          className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+            status === 'needs-work'
+              ? 'bg-zinc-200 text-black'
+              : 'border border-zinc-700 text-zinc-300 hover:bg-zinc-800'
+          }`}
         >
           Needs work
         </button>
 
         <button
           onClick={() => setStatus('rejected')}
-          className="rounded-full border border-zinc-700 px-4 py-2 text-sm text-zinc-400"
+          className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+            status === 'rejected'
+              ? 'bg-zinc-200 text-black'
+              : 'border border-zinc-700 text-zinc-300 hover:bg-zinc-800'
+          }`}
         >
           Reject
         </button>
