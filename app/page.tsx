@@ -1,10 +1,17 @@
 import { Card } from '@/components/card'
 import { Nav } from '@/components/nav'
-import { concepts, events, topics } from '@/lib/data'
+import { events, topics } from '@/lib/data'
 import { Bot, CheckCircle2, Clock3, Shirt } from 'lucide-react'
 import Link from 'next/link'
+import { prisma } from '@/lib/prisma'
 
-export default function Home() {
+export default async function Home() {
+  const concepts = await prisma.concept.findMany({
+    orderBy: {
+      createdAt: 'desc'
+    }
+  })
+
   return (
     <main>
       <Nav />

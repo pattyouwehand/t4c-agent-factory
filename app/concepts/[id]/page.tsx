@@ -1,12 +1,12 @@
 import { Card } from '@/components/card'
 import { Nav } from '@/components/nav'
-import { concepts } from '@/lib/data'
 import { notFound } from 'next/navigation'
-import { ApprovalActions } from '@/components/approval-actions'
+import { ApprovalActions, ApprovalStatus } from '@/components/approval-actions'
+import { prisma } from '@/lib/prisma'
 
 export default async function ConceptDetailPage({ params }: {params: Promise<{ id: string }> }) {
   const { id } = await params
-  const concept = concepts.find((item) => item.id === id)
+  const concept = await prisma.concept.findUnique({ where: { id } })
 
   if (!concept) {
     notFound()
@@ -53,7 +53,7 @@ export default async function ConceptDetailPage({ params }: {params: Promise<{ i
                   Score: {concept.score}
                 </span>
               </div>
-              <ApprovalActions initialStatus={concept.status} />
+              <ApprovalActions initialStatus={concept.status as ApprovalStatus} />
             </div>
           </Card>
         </div>
