@@ -2,10 +2,21 @@
 
 import { useState } from 'react'
 
-type ApprovalStatus = 'draft' | 'review' | 'approved' | 'rejected' | 'needs-work';
+export type ApprovalStatus =
+  | 'draft'
+  | 'review'
+  | 'approved'
+  | 'rejected'
+  | 'needs-work'
 
-export function ApprovalActions({ initialStatus }: { initialStatus: ApprovalStatus }) {
-  const [status, setStatus] = useState<ApprovalStatus>(initialStatus)
+  const isApprovalStatus = (status: string): status is ApprovalStatus => {
+    return ['draft', 'review', 'approved', 'rejected', 'needs-work'].includes(status)
+  }
+
+export function ApprovalActions({ initialStatus }: { initialStatus: string }) {
+  const [status, setStatus] = useState<ApprovalStatus>(
+    isApprovalStatus(initialStatus) ? initialStatus : 'review'
+  )
 
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
