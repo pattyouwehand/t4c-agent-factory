@@ -1,0 +1,30 @@
+[
+  {
+    "id": "evt-1",
+    "time": "08:14",
+    "agent": "Trend Hunter",
+    "action": "Found topic: Birds Aren’t Real",
+    "status": "done"
+  },
+  {
+    "id": "evt-2",
+    "time": "08:15",
+    "agent": "Research Agent",
+    "action": "Summarized origin, claims, and satire angles",
+    "status": "done"
+  },
+  {
+    "id": "evt-3",
+    "time": "08:16",
+    "agent": "Slogan Agent",
+    "action": "Generated 12 slogans",
+    "status": "review"
+  },
+  {
+    "id": "evt-4",
+    "time": "08:17",
+    "agent": "Design Agent",
+    "action": "Created 4 image prompts",
+    "status": "queued"
+  }
+]

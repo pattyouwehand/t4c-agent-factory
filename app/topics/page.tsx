@@ -1,6 +1,6 @@
 import { Card } from '@/components/card'
 import { Nav } from '@/components/nav'
-import { topics } from '@/lib/mock-data'
+import { topics } from '@/lib/data'
 
 export default function TopicsPage() {
   return (
