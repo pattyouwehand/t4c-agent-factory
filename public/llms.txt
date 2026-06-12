@@ -1,0 +1,31 @@
+# T for Conspiracy Factory
+
+T for Conspiracy Factory is an AI-powered merchandise concept platform.
+
+Purpose:
+Generate satirical t-shirt concepts based on internet conspiracy theories.
+
+Workflow:
+WhatsApp → OpenClaw → Mira → API → Neon → Dashboard
+
+Core technologies:
+- Next.js
+- Prisma
+- Neon Postgres
+- OpenClaw
+- GPT-5.5
+- WhatsApp
+- Tailscale
+
+Pages:
+- / : Dashboard
+- /concepts : Concept library
+- /topics : Topic overview
+
+Concept schema:
+- topic
+- slogan
+- description
+- prompt
+- score
+- status

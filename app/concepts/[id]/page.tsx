@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { Card } from '@/components/card'
 import { notFound } from 'next/navigation'
 import { ApprovalActions, ApprovalStatus } from '@/components/approval-actions'

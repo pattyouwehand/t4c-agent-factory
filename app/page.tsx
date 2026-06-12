@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { Card } from '@/components/card'
 import { events } from '@/lib/data'
 import { Bot, CheckCircle2, Clock3, Shirt } from 'lucide-react'
