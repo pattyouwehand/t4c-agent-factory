@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { CreateConceptSchema } from '@/lib/validations/concept'
 
 export async function GET() {
   const concepts = await prisma.concept.findMany({
@@ -11,14 +12,16 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const apiKey = request.headers.get('x-api-key')
-  const concept = await request.json()
 
-  if(apiKey !== process.env.AGENT_API_KEY){
+  if (apiKey !== process.env.AGENT_API_KEY) {
     return NextResponse.json(
-      {error: 'Unautohrized'},
-      {status: 401}
+      { error: 'Unauthorized' },
+      { status: 401 }
     )
   }
+
+  const body = await request.json()
+  const concept = CreateConceptSchema.parse(body)
 
   const createdConcept = await prisma.concept.create({
     data: concept
