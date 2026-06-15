@@ -4,6 +4,7 @@ import { Card } from '@/components/card'
 import { notFound } from 'next/navigation'
 import { ApprovalActions, ApprovalStatus } from '@/components/approval-actions'
 import { prisma } from '@/lib/prisma'
+import Image from 'next/image'
 
 export default async function ConceptDetailPage({ params }: {params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -24,14 +25,28 @@ export default async function ConceptDetailPage({ params }: {params: Promise<{ i
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-        <Card title="Mock shirt preview">
-          <div className="flex aspect-square items-center justify-center rounded-2xl bg-zinc-950 p-8 text-center">
-            <div className="rounded-3xl border border-dashed border-zinc-700 p-8">
-              <p className="text-2xl font-black uppercase tracking-tight">
-                {concept.slogan}
-              </p>
-              <p className="mt-4 text-xs text-zinc-500">Mock preview placeholder</p>
-            </div>
+        <Card title="Shirt preview">
+          <div className="relative aspect-square rounded-2xl bg-zinc-950 p-8">
+            {concept.imageUrl ? (
+              <Image
+                src={concept.imageUrl}
+                alt={concept.slogan}
+                fill
+                priority
+                className="object-contain p-8"
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center text-center">
+                <div className="rounded-3xl border border-dashed border-zinc-700 p-8">
+                  <p className="text-2xl font-black uppercase tracking-tight">
+                    {concept.slogan}
+                  </p>
+                  <p className="mt-4 text-xs text-zinc-500">
+                    Mock preview placeholder
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </Card>
 
@@ -41,17 +56,31 @@ export default async function ConceptDetailPage({ params }: {params: Promise<{ i
               <p className="mb-2 text-sm text-zinc-500">Description</p>
               <p>{concept.description}</p>
             </div>
+
             <div>
-              <p className="mb-2 text-sm text-zinc-500">Image prompt</p>
+              <p className="mb-2 text-sm text-zinc-500">Design prompt</p>
               <pre className="whitespace-pre-wrap rounded-xl bg-zinc-950 p-4 text-sm text-zinc-300">
                 {concept.prompt}
               </pre>
             </div>
-            <div className="flex gap-3">
+
+            <div>
+              <p className="mb-2 text-sm text-zinc-500">Image prompt</p>
+              <pre className="whitespace-pre-wrap rounded-xl bg-zinc-950 p-4 text-sm text-zinc-300">
+                {concept.imagePrompt || 'No image prompt yet.'}
+              </pre>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
               <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm">
                 Score: {concept.score}
               </span>
+
+              <span className="rounded-full bg-zinc-800 px-3 py-1 text-sm">
+                Asset: {concept.assetStatus}
+              </span>
             </div>
+
             <ApprovalActions initialStatus={concept.status as ApprovalStatus} />
           </div>
         </Card>

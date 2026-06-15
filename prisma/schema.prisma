@@ -12,12 +12,23 @@ datasource db {
   provider = "postgresql"
 }
 
+enum AssetStatus {
+  PENDING
+  GENERATING
+  COMPLETED
+  FAILED
+}
+
 model Concept {
-  id          String   @id
+  id          String  @id @default(cuid())
   topic       String
   slogan      String
   description String
   prompt      String
+  imagePrompt String?  @db.Text
+  imageUrl    String?
+
+  assetStatus AssetStatus @default(PENDING)
   score       Int
   status      String
   createdAt   DateTime @default(now())
